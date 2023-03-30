@@ -2,6 +2,7 @@
 from email import message
 from django.conf import settings
 from django.core.mail import send_mail
+from django.http import Http404
 from rest_framework import serializers
 
 from rest_framework.response import Response
@@ -86,6 +87,23 @@ class VerifyEmail(APIView):
         
         except user.DoesNotExist:
             return Response({'message': 'Invalid activation link'}, status.HTTP_400_BAD_REQUEST)
+        
+
+
+class DeletUserView(APIView):
+    def get_object(self, userid):
+        try:
+            post = user.objects.get(userid=userid)
+        except user.DoesNotExist:
+            raise Http404
+        return post
+
+    def delete(self, request, userid):
+        post = self.get_object(userid)
+        post.delete()
+        return Response('the user was deleted successfuly')
+        
+
 
 
 

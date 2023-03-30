@@ -38,8 +38,8 @@ class user(AbstractBaseUser, PermissionsMixin):
     fullname = models.CharField(blank=True, unique=True, max_length=120)
     username = models.CharField(blank=True, unique=True, max_length=100)
     firstname = models.CharField(blank=True, max_length=100)
-    userid = models.CharField(blank=True, max_length=20)
-
+    userid = models.CharField(blank=True, max_length=20, unique=True)
+    
     is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)

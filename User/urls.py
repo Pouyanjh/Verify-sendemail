@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import RegisterView, MyTokenObtainPairView, GetListProduct, VerifyEmail
+from .views import RegisterView, MyTokenObtainPairView, GetListProduct, VerifyEmail, DeletUserView
 from rest_framework_simplejwt.views import TokenRefreshView
 
 
@@ -10,6 +10,7 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('product/', GetListProduct.as_view()),
     path('account-verify/<str:uid>/', VerifyEmail.as_view(), name='verify-email'),
+    path('deleteuser/<str:userid>/', DeletUserView.as_view()),
 
 
 
