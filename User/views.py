@@ -24,6 +24,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         # Add custom claims
         token['username'] = user.username,
         token['email'] = user.email,
+        token['userid'] = user.userid,
         # ...
 
         return token
@@ -33,7 +34,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
         if not user.is_email_verified:
              raise serializers.ValidationError(
-                {"auth error": "Please verify your email address."}
+                {"auth error":"Please verify your email address."}
             )
 
 
